@@ -526,7 +526,7 @@ for element in my_set:
 
 ```python
 my_set = {((3, 4)), -7, 1, 5, 2, -2}
-# Can't create set with mutable elements (e.g list)
+# Can't create set with mutable elements (e.g list) Hence layer copy doesn't matter for set
 
 # Top Layer Copy
 new_set = set(my_set)
@@ -542,6 +542,73 @@ new_set = copy.deepcopy(my_set)
 
 ```python
 length = len(my_set)
+```
+
+### add
+
+```python
+my_set = {1, 2, 3}
+
+# Add single element
+my_set.add("Hello")
+
+# Add multiple elements
+my_set.update("world", [4], {9}, (12, 13), {"key": 10, 8: 10})
+# Elements can be string, list, set, tuple and dict
+# Only keys get added in set as only keys of dict are unique
+
+# Add multiple elements and generate a new set
+new_set = my_set.union({5, 6})
+```
+
+### remove
+
+```python
+my_set = {(3, 4), -7, 1, 5, 2, -2}
+
+# Remove element and NOT throw error if element doesn't exist
+my_set.discard((3, 4))
+
+# Remove ALL the elements
+my_set.clear()
+```
+
+### contains
+
+```python
+flag = "d" in my_set  # False
+flag = "d" not in my_set  # True
+```
+
+### get
+
+```python
+# NOT POSSIBLE to get or access elements by index as set is an unordered collection of unique elements
+```
+
+### sum
+
+```python
+my_set = {1, 2, 3, 4}
+sum(my_set)  # 10
+```
+
+### sort
+
+```python
+# NOT POSSIBLE as set is unordered.
+# Convert into list and then sort.
+
+# FYI: Can't create set that stores element in sorted order or maintains the insertion order.
+```
+
+### sort (class)
+
+```python
+# NOT POSSIBLE as set is unordered.
+# Convert into list and then sort.
+
+# FYI: Can't create set that stores element in sorted order or maintains the insertion order.
 ```
 
 # Dictionary

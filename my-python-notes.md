@@ -613,8 +613,37 @@ sum(my_set)  # 10
 
 # Dictionary
 
+### initialization
+
 ```python
-print("STILL EDITING THIS SECTION")
+# Declare
+my_dict = {}  # (Creates a dict NOT a set)
+my_dict = dict()
+
+# Declare and Initialize
+my_dict = {"key1": "value1", "key2": "value2"}
+my_dict = dict([("key1", "value1"), ("key2", "value2")])
+my_dict = dict(
+    zip(["key1", "key2"], ["value1", "value2"])
+)  # Both lists should have same number of elements otherwise few pairs will go missing
+
+from itertools import zip_longest
+
+my_dict = dict(
+    zip_longest(["key1", "key2", "key3"], ["value1", "value2"], fillvalue="missing")
+)  # Fill the missing values with fillvalue
+
+from collections import defaultdict
+
+my_dict = defaultdict(
+    list
+)  # Default value is empty list so no need to create a new list for each new key, directly append
+my_dict["key2"].append("value2")
+my_dict["key1"].append("value1")
+
+# NOT POSSIBLE to create dict that keeps elements in sorted order wrt key
+
+# By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
 ```
 
 # Conversions

@@ -626,6 +626,9 @@ sum(my_set)  # 10
 
 # Dictionary
 
+- Dict has immutable elements or inner-elements (e.g list) as key.
+- Dict can have mutalble value.
+
 ### initialization
 
 ```python
@@ -669,7 +672,7 @@ my_dict["key1"].append("value1")
 
 ```python
 my_dict = {("a", "b"): ["c", ["d"]], "e": 2}
-# Can't create dict with mutable elements (e.g list) as key. Mutable values are allowed.
+# Can't create dict with mutable elements or inner-elements (e.g list) as key. Mutable values are allowed.
 
 # Top Layer Copy (Shallow Copy)
 new_dict = dict(my_dict)
@@ -714,6 +717,47 @@ new_dict = first_dict | second_dict
 ```python
 #  Override the existing key-value pair element and update its value in dict
 my_dict["key"] = "new_value"
+```
+
+### remove
+
+```python
+my_dict = {"key1": "value1", "key2": "value2"}
+
+# Removes the key-value pair element and returns the value if key exists or else THROWS KeyError
+value = my_dict.pop("key")
+
+# Removes the key-value pair element and returns the value if key exists or else returns default value (which can be set to None or any other value)
+value = my_dict.pop("key", "default_value")
+
+# Removes all key-value pair elements
+my_dict.clear()
+```
+
+### contains
+
+```python
+my_dict = {"key1": "value1", "key2": "value2"}
+
+# Vanilla
+key_flag = "key1" in my_dict  # O(1)
+
+# Complex
+key_flag = "key1" in my_dict.keys()  # O(1)
+value_flag = "value1" in my_dict.values()  # O(n)
+pair_flag = ("key1", "value1") in my_dict.items()  # O(n)
+```
+
+### get
+
+```python
+my_dict = {"key1": "value1", "key2": "value2"}
+
+# Returns the value if key exists or else returns None
+value = my_dict.get("key")
+
+# Returns the value if key exists or else returns default value (which can be set to None or any other value)
+value = my_dict.get("key", "default_value")
 ```
 
 # Conversions

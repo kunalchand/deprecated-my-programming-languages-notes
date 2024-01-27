@@ -318,8 +318,17 @@
 ### Add
 
 ```java
-        // Insert or Override One Element in Map
+        // Insert a new key-value element in Map
         map.put("key", "value");
+
+        // FYI: It overrides the value, if the key already exists in map. (See Update)
+```
+
+### Update
+
+```java
+        // Override the existing key-value element and update its value in Map
+        map.put("key", "newValue");
 ```
 
 ### Remove

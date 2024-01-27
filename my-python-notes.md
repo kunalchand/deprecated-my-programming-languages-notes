@@ -145,7 +145,7 @@ new_list = my_list[1:3] # [2, 'var 3'] (index 1 to index 2)
 ```python
 my_list = [[[3]], -7, 1, 5, 2, -2]
 
-# Top Layer Copy
+# Top Layer Copy (Shallow Copy)
 new_list = my_list[:]
 new_list = list(my_list)
 new_list = my_list.copy()
@@ -185,6 +185,7 @@ my_list += ["element"]
 ### update
 
 ```python
+# Update value at the given index
 index = 2
 my_list[index] = "element"
 ```
@@ -342,7 +343,7 @@ new_tuple = my_tuple[1:3]  # (2, 'var 3') (index 1 to index 2)
 ```python
 my_tuple = ([[3]], -7, 1, 5, 2, -2)
 
-# Top Layer Copy
+# Top Layer Copy (Shallow Copy)
 new_tuple = my_tuple[:]
 new_tuple = tuple(my_tuple)
 new_tuple = my_tuple
@@ -484,6 +485,9 @@ new_myclass_tuple = tuple(sorted(myclass_tuple, key=sort_by_len_then_normal))
 
 # Set
 
+- Set can only have immutable elements or inner-elements
+- Set is unordered or unindexed
+
 ### initialization
 
 ```python
@@ -528,7 +532,7 @@ for element in my_set:
 my_set = {((3, 4)), -7, 1, 5, 2, -2}
 # Can't create set with mutable elements (e.g list) Hence layer copy doesn't matter for set
 
-# Top Layer Copy
+# Top Layer Copy (Shallow Copy)
 new_set = set(my_set)
 new_set = my_set.copy()
 new_set = {x for x in my_set}
@@ -561,13 +565,22 @@ my_set.update("world", [4], {9}, (12, 13), {"key": 10, 8: 10})
 new_set = my_set.union({5, 6})
 ```
 
+### update
+
+```python
+# NOT POSSIBLE for set as set can't have mutable elements
+```
+
 ### remove
 
 ```python
 my_set = {(3, 4), -7, 1, 5, 2, -2}
 
-# Remove element and NOT throw error if element doesn't exist
+# Remove element but NOT throw error if element doesn't exist
 my_set.discard((3, 4))
+
+# Remove element but THROW error if element doesn't exist
+my_set.remove((7, "ab8", 9))
 
 # Remove ALL the elements
 my_set.clear()
@@ -644,6 +657,34 @@ my_dict["key1"].append("value1")
 # NOT POSSIBLE to create dict that keeps elements in sorted order wrt key
 
 # By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
+```
+
+### slice / sub-dict
+
+```python
+# NOT POSSIBLE for dict
+```
+
+### copy
+
+```python
+my_dict = {("a", "b"): ["c", ["d"]], "e": 2}
+# Can't create dict with mutable elements (e.g list) as key. Mutable values are allowed.
+
+# Top Layer Copy (Shallow Copy)
+new_dict = dict(my_dict)
+new_dict = my_dict.copy()
+new_dict = {k: v for k, v in my_dict.items()}
+# new_dict[("a", "b")][1][0] = 5
+# my_dict = {('a', 'b'): ['c', [5]], 'e': 2}
+# new_dict = {('a', 'b'): ['c', [5]], 'e': 2}
+
+# Deep Copy
+import copy
+new_dict = copy.deepcopy(my_dict)
+# new_dict[("a", "b")][1][0] = 5
+# my_dict = {('a', 'b'): ['c', ['d']], 'e': 2}
+# new_dict = {('a', 'b'): ['c', [5]], 'e': 2}
 ```
 
 ### size

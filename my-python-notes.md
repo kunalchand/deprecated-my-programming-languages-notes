@@ -646,6 +646,35 @@ my_dict["key1"].append("value1")
 # By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
 ```
 
+### size
+
+```python
+length = len(my_dict)
+```
+
+### add
+
+```python
+my_dict = {"key1": 1, "key2": 2}
+
+#  Insert a new key-value pair element in dict
+my_dict["key"] = "value"
+# FYI: It overrides value, if key already exists in dict (See Update)
+
+# Concatinate two dicts
+first_dict = {"key1": 1, "key2": 2}
+second_dict = {"key3": 3, "key4": 4}
+new_dict = {**first_dict, **second_dict}
+new_dict = first_dict | second_dict
+```
+
+### update
+
+```python
+#  Override the existing key-value pair element and update its value in dict
+my_dict["key"] = "new_value"
+```
+
 # Conversions
 
 ### 1. String & List

@@ -318,10 +318,10 @@
 ### Add
 
 ```java
-        // Insert a new key-value element in Map
+        // Insert a new key-value pair element in Map
         map.put("key", "value");
 
-        // FYI: It overrides the value, if the key already exists in map. (See Update)
+        // FYI: It overrides value, if key already exists in Map (See Update)
 ```
 
 ### Update

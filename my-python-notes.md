@@ -268,34 +268,34 @@ new_list = sorted(my_list, key=sort_by_abs_then_normal)
 
 ```python
 class MyClass:
-   def __init__(self, string: str = "") -> None:
-       self.string = string
+    def __init__(self, string: str = "") -> None:
+        self.string = string
 
-   def __repr__(self):  # Backup if __str__ is not defined
-       return self.string
+    def __repr__(self):  # Backup if __str__ is not defined
+        return self.string
 
-   def __str__(self):
-       self.__repr__()
+    def __str__(self):
+        self.__repr__()
 
 
-myclass_list = [MyClass("abc"), MyClass("def"), MyClass(), MyClass("python")]
+my_list = [MyClass("abc"), MyClass("def"), MyClass(), MyClass("python")]
 
 # Using lambda InPlace Sort
-myclass_list.sort(key=lambda x: (-len(x.string), x.string))
+my_list.sort(key=lambda x: (-len(x.string), x.string))
 
 # Using lambda OutOfPlace Sort
-new_myclass_list = sorted(myclass_list, key=lambda x: (-len(x.string), x.string))
+new_list = sorted(my_list, key=lambda x: (-len(x.string), x.string))
 
 
 def sort_by_len_then_normal(item):
-   return (-len(item.string), item.string)
+    return (-len(item.string), item.string)
 
 
 # Using key = custom function InPlace Sort
-myclass_list.sort(key=sort_by_len_then_normal)
+my_list.sort(key=sort_by_len_then_normal)
 
 # Using key = custom function OutOfPlace Sort
-new_myclass_list = sorted(myclass_list, key=sort_by_len_then_normal)
+new_list = sorted(my_list, key=sort_by_len_then_normal)
 ```
 
 # Tuple
@@ -451,42 +451,41 @@ new_tuple = tuple(sorted(my_tuple, key=sort_by_abs_then_normal))
 
 ```python
 class MyClass:
-   def __init__(self, string: str = "") -> None:
-       self.string = string
+    def __init__(self, string: str = "") -> None:
+        self.string = string
 
-   def __repr__(self):  # Backup if __str__ is not defined
-       return self.string
+    def __repr__(self):  # Backup if __str__ is not defined
+        return self.string
 
-   def __str__(self):
-       self.__repr__()
+    def __str__(self):
+        self.__repr__()
 
 
-myclass_tuple = (MyClass("abc"), MyClass("def"), MyClass(), MyClass("python"))
+my_tuple = (MyClass("abc"), MyClass("def"), MyClass(), MyClass("python"))
 
 # Using lambda InPlace Sort
 # NOT POSSIBLE as tuple is immutable
 
 # Using lambda OutOfPlace Sort
-new_myclass_tuple = tuple(
-   sorted(myclass_tuple, key=lambda x: (-len(x.string), x.string))
-)
+new_tuple = tuple(sorted(my_tuple, key=lambda x: (-len(x.string), x.string)))
 
 
 def sort_by_len_then_normal(item):
-   return (-len(item.string), item.string)
+    return (-len(item.string), item.string)
 
 
 # Using key = custom function InPlace Sort
 # NOT POSSIBLE as tuple is immutable
 
 # Using key = custom function OutOfPlace Sort
-new_myclass_tuple = tuple(sorted(myclass_tuple, key=sort_by_len_then_normal))
+new_tuple = tuple(sorted(my_tuple, key=sort_by_len_then_normal))
 ```
 
 # Set
 
-- Set can only have immutable elements or inner-elements
-- Set is unordered or unindexed
+- Set can only have immutable elements or inner-elements (e.g list) (Reference to element can't be changed. Basically element can be Class but not list).
+- Set is unordered or unindexed.
+- Can't create set that stores element in sorted order or maintains the insertion order.
 
 ### initialization
 
@@ -609,25 +608,55 @@ sum(my_set)  # 10
 ### sort
 
 ```python
-# NOT POSSIBLE as set is unordered.
-# Convert into list and then sort.
+# NOT POSSIBLE as set is unordered. Gives random order in each iteration.
+# Convert into list, then sort the list and then use sorted list.
 
 # FYI: Can't create set that stores element in sorted order or maintains the insertion order.
+
+my_set = {3, -7, 1, 5, 2, -2}
+
+my_list = list(my_set)
+# my_list = [1, 2, 3, 5, -7, -2]
+
+new_list = sorted(my_list, key=lambda element: abs(element), reverse=True)
+# new_list = [-7, 5, 3, 2, -2, 1]
 ```
 
 ### sort (class)
 
 ```python
-# NOT POSSIBLE as set is unordered.
-# Convert into list and then sort.
+# NOT POSSIBLE as set is unordered. Gives random order in each iteration.
+# Convert into list, then sort the list and then use sorted list.
 
 # FYI: Can't create set that stores element in sorted order or maintains the insertion order.
+
+class MyClass:
+    def __init__(self, string: str = "") -> None:
+        self.string = string
+
+    def __repr__(self):  # Backup if __str__ is not defined
+        return self.string
+
+    def __str__(self):
+        self.__repr__()
+
+
+my_set = {MyClass("abc"), MyClass("def"), MyClass(), MyClass("python")}
+
+my_list = list(my_set)
+# my_list = [def, , python, abc]
+
+new_list = sorted(my_list, key=lambda x: len(x.string), reverse=True)
+# new_list = [python, def, abc, ]
 ```
 
 # Dictionary
 
-- Dict has immutable elements or inner-elements (e.g list) as key.
+- Dict has immutable elements or inner-elements (e.g list) as key (Reference to element can't be changed. Basically element can be class but not list).
 - Dict can have mutalble value.
+- Dict is unindexed.
+- Can't create dict that keeps elements in sorted order wrt key or value.
+- By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict).
 
 ### initialization
 
@@ -657,7 +686,7 @@ my_dict = defaultdict(
 my_dict["key2"].append("value2")
 my_dict["key1"].append("value1")
 
-# NOT POSSIBLE to create dict that keeps elements in sorted order wrt key
+# NOT POSSIBLE to create dict that keeps elements in sorted order wrt key or value
 
 # By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
 ```
@@ -808,6 +837,62 @@ my_dict = {1: "value1", 2: "value2", 3: "value3"}
 sum(my_dict.keys())  # 6
 ```
 
+#### sort
+
+```python
+# NOT POSSIBLE to create dict that keeps elements in sorted order wrt key
+# Convert into list, then sort the list, then convert the sorted list into dict and then use dict.
+
+# FYI: By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
+
+my_dict = {7: "value3", 8: "value1", 6: "value2"}
+
+my_list = list(my_dict.items())
+# my_list = [(7, 'value3'), (8, 'value1'), (6, 'value2')]
+
+new_list = sorted(my_list, key=lambda entry: entry[0], reverse=True)
+# new_list = [(8, 'value1'), (7, 'value3'), (6, 'value2')]
+
+new_dict = dict(new_list)
+# new_dict = {8: 'value1', 7: 'value3', 6: 'value2'}
+```
+
+#### sort (class)
+
+```python
+# NOT POSSIBLE to create dict that keeps elements in sorted order wrt key
+# Convert into list, then sort the list, then convert the sorted list into dict and then use dict.
+
+# FYI: By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
+
+class MyClass:
+    def __init__(self, string: str = "") -> None:
+        self.string = string
+
+    def __repr__(self):  # Backup if __str__ is not defined
+        return self.string
+
+    def __str__(self):
+        self.__repr__()
+
+
+my_dict = {
+    MyClass("abc"): 4,
+    MyClass("def"): 3,
+    MyClass(): 2,
+    MyClass("python"): 1,
+}
+
+my_list = list(my_dict.items())
+# my_list = [(abc, 4), (def, 3), (, 2), (python, 1)]
+
+new_list = sorted(my_list, key=lambda entry: entry[0].string, reverse=True)
+# new_list = [(python, 1), (def, 3), (abc, 4), (, 2)]
+
+new_dict = dict(new_list)
+# new_dict = {python: 1, def: 3, abc: 4, : 2}
+```
+
 ### value
 
 #### iterate
@@ -831,6 +916,62 @@ my_dict = {"key1": 1, "key2": 2, "key3": 3}
 
 # Vanilla
 sum(my_dict.values())  # 6
+```
+
+#### sort
+
+```python
+# NOT POSSIBLE to create dict that keeps elements in sorted order wrt value
+# Convert into list, then sort the list, then convert the sorted list into dict and then use dict.
+
+# FYI: By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
+
+my_dict = {7: "value3", 8: "value1", 6: "value2"}
+
+my_list = list(my_dict.items())
+# my_list = [(7, 'value3'), (8, 'value1'), (6, 'value2')]
+
+new_list = sorted(my_list, key=lambda entry: entry[1], reverse=True)
+# new_list = [(7, 'value3'), (6, 'value2'), (8, 'value1')]
+
+new_dict = dict(new_list)
+# new_dict = {7: 'value3', 6: 'value2', 8: 'value1'}
+```
+
+#### sort (class)
+
+```python
+# NOT POSSIBLE to create dict that keeps elements in sorted order wrt value
+# Convert into list, then sort the list, then convert the sorted list into dict and then use dict.
+
+# FYI: By DEFAULT in python, dictionary maintains insertion order of elements (both dict and defaultdict)
+
+class MyClass:
+    def __init__(self, string: str = "") -> None:
+        self.string = string
+
+    def __repr__(self):  # Backup if __str__ is not defined
+        return self.string
+
+    def __str__(self):
+        self.__repr__()
+
+
+my_dict = {
+    4: MyClass("abc"),
+    3: MyClass("def"),
+    2: MyClass(),
+    1: MyClass("python"),
+}
+
+my_list = list(my_dict.items())
+# my_list = [(4, abc), (3, def), (2, ), (1, python)]
+
+new_list = sorted(my_list, key=lambda entry: entry[1].string, reverse=True)
+# new_list = [(1, python), (3, def), (4, abc), (2, )]
+
+new_dict = dict(new_list)
+# new_dict = {1: python, 3: def, 4: abc, 2: }
 ```
 
 # Conversions
@@ -887,6 +1028,9 @@ new_list = list({"var1", 2, "var 3"})
 # MyClass
 
 ### init, repr, str, eq, hash
+
+- Defining **repr** is much safer that definding **str**
+- **str** may or may not be directly called. But **repr** is either directly called or gets called when **str** is not present
 
 ```python
 class MyClass:

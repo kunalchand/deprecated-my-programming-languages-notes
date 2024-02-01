@@ -252,16 +252,38 @@ my_list.sort(key=lambda x: (-abs(x), x))
 new_list = sorted(my_list, key=lambda x: (-abs(x), x))
 
 
-
-def sort_by_abs_then_normal(item):
-   return (-abs(item), item)
+def custom_function(item):
+    return (-abs(item), item)
 
 
 # Using key = custom function InPlace Sort
-my_list.sort(key=sort_by_abs_then_normal)
+my_list.sort(key=custom_function)
 
 # Using key = custom function OutOfPlace Sort
-new_list = sorted(my_list, key=sort_by_abs_then_normal)
+new_list = sorted(my_list, key=custom_function)
+
+
+def custom_method(a, b):
+    if abs(a) > abs(b):
+        return -1 # a comes BEFORE b
+    elif abs(a) < abs(b):
+        return 1 # a comes AFTER b
+    else:
+        if a > b:
+            return 1 # a comes AFTER b
+        elif a < b:
+            return -1 # a comes BEFORE b
+        else:
+            return 0
+
+
+# Using key = cmp_to_key InPlace Sort
+from functools import cmp_to_key
+my_list.sort(key=cmp_to_key(custom_method))
+
+# Using key = cmp_to_key OutOfPlace Sort
+from functools import cmp_to_key
+new_list = sorted(my_list, key=cmp_to_key(custom_method))
 ```
 
 ### sort (class)
@@ -287,18 +309,45 @@ my_list.sort(key=lambda x: (-len(x.string), x.string))
 new_list = sorted(my_list, key=lambda x: (-len(x.string), x.string))
 
 
-def sort_by_len_then_normal(item):
+def custom_function(item):
     return (-len(item.string), item.string)
 
 
 # Using key = custom function InPlace Sort
-my_list.sort(key=sort_by_len_then_normal)
+my_list.sort(key=custom_function)
 
 # Using key = custom function OutOfPlace Sort
-new_list = sorted(my_list, key=sort_by_len_then_normal)
+new_list = sorted(my_list, key=custom_function)
+
+
+def custom_method(a, b):
+    if len(a.string) == 0 and len(b.string) != 0:
+        return -1  # a comes BEFORE b
+    elif len(a.string) != 0 and len(b.string) == 0:
+        return 1  # a comes AFTER b
+    else:
+        # Both strings have a length greater than 0, compare the strings
+        if a.string > b.string:
+            return -1  # a comes BEFORE b
+        elif a.string < b.string:
+            return 1  # a comes AFTER b
+        else:
+            return 0  # a and b are equal
+
+
+# Using key = cmp_to_key InPlace Sort
+from functools import cmp_to_key
+my_list.sort(key=cmp_to_key(custom_method))
+
+# Using key = cmp_to_key OutOfPlace Sort
+from functools import cmp_to_key
+new_list = sorted(my_list, key=cmp_to_key(custom_method))
 ```
 
 # Tuple
+
+- Tuple has immutable elements
+- Tuple can have mutable inner-elements.
 
 ### initialization
 
@@ -436,15 +485,38 @@ new_tuple = tuple(sorted(my_tuple, key=abs, reverse=True))
 new_tuple = tuple(sorted(my_tuple, key=lambda x: (-abs(x), x)))
 
 
-def sort_by_abs_then_normal(item):
-   return (-abs(item), item)
+def custom_function(item):
+    return (-abs(item), item)
 
 
 # Using key = custom function InPlace Sort
 # NOT POSSIBLE as tuple is immutable
 
 # Using key = custom function OutOfPlace Sort
-new_tuple = tuple(sorted(my_tuple, key=sort_by_abs_then_normal))
+new_tuple = tuple(sorted(my_tuple, key=custom_function))
+
+
+def custom_method(a, b):
+    if abs(a) > abs(b):
+        return -1
+    elif abs(a) < abs(b):
+        return 1
+    else:
+        if a > b:
+            return 1
+        elif a < b:
+            return -1
+        else:
+            return 0
+
+
+# Using key = cmp_to_key InPlace Sort
+# NOT POSSIBLE as tuple is immutable
+
+# Using key = cmp_to_key OutOfPlace Sort
+from functools import cmp_to_key
+
+new_tuple = tuple(sorted(my_tuple, key=cmp_to_key(custom_method)))
 ```
 
 ### sort (class)
@@ -470,7 +542,7 @@ my_tuple = (MyClass("abc"), MyClass("def"), MyClass(), MyClass("python"))
 new_tuple = tuple(sorted(my_tuple, key=lambda x: (-len(x.string), x.string)))
 
 
-def sort_by_len_then_normal(item):
+def custom_function(item):
     return (-len(item.string), item.string)
 
 
@@ -478,7 +550,31 @@ def sort_by_len_then_normal(item):
 # NOT POSSIBLE as tuple is immutable
 
 # Using key = custom function OutOfPlace Sort
-new_tuple = tuple(sorted(my_tuple, key=sort_by_len_then_normal))
+new_tuple = tuple(sorted(my_tuple, key=custom_function))
+
+
+def custom_method(a, b):
+    if len(a.string) == 0 and len(b.string) != 0:
+        return -1  # a comes BEFORE b
+    elif len(a.string) != 0 and len(b.string) == 0:
+        return 1  # a comes AFTER b
+    else:
+        # Both strings have a length greater than 0, compare the strings
+        if a.string > b.string:
+            return -1  # a comes BEFORE b
+        elif a.string < b.string:
+            return 1  # a comes AFTER b
+        else:
+            return 0  # a and b are equal
+
+
+# Using key = cmp_to_key InPlace Sort
+# NOT POSSIBLE as tuple is immutable
+
+# Using key = cmp_to_key OutOfPlace Sort
+from functools import cmp_to_key
+
+new_tuple = tuple(sorted(my_tuple, key=cmp_to_key(custom_method)))
 ```
 
 # Set

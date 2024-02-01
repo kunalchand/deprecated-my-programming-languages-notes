@@ -760,7 +760,7 @@ value = my_dict.get("key")
 value = my_dict.get("key", "default_value")
 ```
 
-### entry/item
+### entry / item
 
 #### iterate
 

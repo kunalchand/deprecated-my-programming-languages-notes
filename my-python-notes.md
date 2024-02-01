@@ -124,13 +124,13 @@ my_list = ["var1", 2, "var 3"]
 for index in range(0, len(my_list)): # 0 to len(my_list)-1
    print(index, my_list[index])
 
-# Using enumerate
-for index, element in enumerate(my_list):
-   print(index, element)
-
 # Using for-each loop
 for element in my_list:
    print(element)
+
+# Using enumerate
+for index, element in enumerate(my_list):
+   print(index, element)
 ```
 
 ### slice / sub-list
@@ -322,13 +322,13 @@ my_tuple = ("var1", 2, "var 3")
 for index in range(0, len(my_tuple)):  # 0 to len(my_tuple)-1
    print(index, my_tuple[index])
 
-# Using enumerate
-for index, element in enumerate(my_tuple):
-   print(index, element)
-
 # Using for-each loop
 for element in my_tuple:
    print(element)
+
+# Using enumerate
+for index, element in enumerate(my_tuple):
+   print(index, element)
 ```
 
 ### slice / sub-tuple
@@ -511,13 +511,13 @@ my_set = set(["var1", 2, "var 3"])
 # Using range
 # NOT POSSIBLE as set is unordered or unindexed
 
-# Using enumerate
-for index, element in enumerate(my_set):
-   print(index, element)
-
 # Using for-each loop
 for element in my_set:
    print(element)
+
+# Using enumerate
+for index, element in enumerate(my_set):
+   print(index, element)
 ```
 
 ### slice / sub-set
@@ -760,45 +760,128 @@ value = my_dict.get("key")
 value = my_dict.get("key", "default_value")
 ```
 
+### entry/item
+
+#### iterate
+
+```python
+my_dict = {"key1": "value1", "key2": "value2", "key3": "value3"}
+
+# Using for-each loop
+for key, value in my_dict.items():
+    print(key, value)
+
+# Using enumerate
+for index, (key, value) in enumerate(my_dict.items()):
+    print(index, key, value)
+```
+
+### key
+
+#### iterate
+
+```python
+my_dict = {"key1": "value1", "key2": "value2", "key3": "value3"}
+
+# Vanilla for-each loop
+for key in my_dict:
+    value = my_dict[key]
+    print(key, value)
+
+# Using for-each loop
+for key in my_dict.keys():
+    value = my_dict[key]
+    print(key, value)
+
+# Using enumerate
+for index, key in enumerate(my_dict.keys()):
+    value = my_dict[key]
+    print(index, key, value)
+```
+
+#### sum
+
+```python
+my_dict = {1: "value1", 2: "value2", 3: "value3"}
+
+# Vanilla
+sum(my_dict.keys())  # 6
+```
+
+### value
+
+#### iterate
+
+```python
+my_dict = {"key1": "value1", "key2": "value2", "key3": "value3"}
+
+# Using for-each loop
+for value in my_dict.values():
+    print(value)
+
+# Using enumerate
+for index, value in enumerate(my_dict.values()):
+    print(index, value)
+```
+
+#### sum
+
+```python
+my_dict = {"key1": 1, "key2": 2, "key3": 3}
+
+# Vanilla
+sum(my_dict.values())  # 6
+```
+
 # Conversions
 
 ### 1. String & List
 
 ```python
-new_list = list("var 3")  # ['v', 'a', 'r', ' ', '3']
+new_list = list("var 3")
+# new_list = ['v', 'a', 'r', ' ', '3']
 
-my_string = "".join(["v", "a", "r", " ", "3"])  # "var 3"
+new_string = "".join(["v", "a", "r", " ", "3"])
+# new_string = "var 3"
 ```
 
 ### 2. Dictionary & List
 
 ```python
+new_dict = dict([('var1', 1), ('var2', 2), ('var3', 3)])
+# new_dict = {'var1': 1, 'var2': 2, 'var3': 3}
+
 new_dict = dict(zip(["var1", "var2", "var3"], [1, 2, 3]))
+# new_dict = {'var1': 1, 'var2': 2, 'var3': 3}
 
-# [('var1', 1), ('var2', 2), ('var3', 3)]
 items = list(new_dict.items())
+# items = [('var1', 1), ('var2', 2), ('var3', 3)]
 
-# ['var1', 'var2', 'var3']
 keys = list(new_dict.keys())
+# keys = ['var1', 'var2', 'var3']
 
-# [1, 2, 3]
 values = list(new_dict.values())
+# values = [1, 2, 3]
 ```
 
 ### 3. Tuple & List
 
 ```python
 new_tuple = tuple(["var1", 2, "var 3"])
+# new_tuple = ('var1', 2, 'var 3')
 
 new_list = list(("var1", 2, "var 3"))
+# new_list = ['var1', 2, 'var 3']
 ```
 
 ### 4. Set & List
 
 ```python
 new_set = set(["var1", 2, "var 3"])
+# new_set = {2, 'var 3', 'var1'}
 
 new_list = list({"var1", 2, "var 3"})
+# new_list = [2, 'var1', 'var 3']
 ```
 
 # MyClass

@@ -32,6 +32,7 @@
 - power operator
 - .format in print()
 - OOP local variable & constructor initialize
+- | operator in python
 
 # Vid-Reference
 

@@ -122,7 +122,7 @@ my_list = list(["var1", 2, "var 3"])
 my_list = ["var1", 2, "var 3"]
 
 # Using range
-for index in range(0, len(my_list)): # 0 to len(my_list)-1
+for index in range(0, len(my_list), 1): # 0 to len(my_list)-1
    print(index, my_list[index])
 
 # Using for-each loop
@@ -196,6 +196,13 @@ my_list[index] = "element"
 ```python
 index = 2
 my_list.pop(index)
+```
+
+### clear
+
+```python
+# Remove ALL element from list
+my_list.clear()
 ```
 
 ### contains
@@ -369,7 +376,7 @@ my_tuple = tuple(["var1", 2, "var 3"])
 my_tuple = ("var1", 2, "var 3")
 
 # Using range
-for index in range(0, len(my_tuple)):  # 0 to len(my_tuple)-1
+for index in range(0, len(my_tuple), 1):  # 0 to len(my_tuple)-1
    print(index, my_tuple[index])
 
 # Using for-each loop
@@ -428,6 +435,12 @@ length = len(my_tuple)
 ```
 
 ### remove
+
+```python
+# NOT POSSIBLE as tuple is immutable
+```
+
+### clear
 
 ```python
 # NOT POSSIBLE as tuple is immutable
@@ -583,6 +596,7 @@ new_tuple = tuple(sorted(my_tuple, key=cmp_to_key(custom_method)))
 - Set can only have immutable elements or inner-elements (e.g list) (Reference to element can't be changed. Basically element can be Class but not list).
 - Set is unordered or unindexed.
 - Can't create set that stores element in sorted order or maintains the insertion order.
+- Order of element in set is random
 
 ### initialization
 
@@ -609,11 +623,10 @@ my_set = set(["var1", 2, "var 3"])
 
 # Using for-each loop
 for element in my_set:
-   print(element)
+   print(element) # Order of elements is random
 
 # Using enumerate
-for index, element in enumerate(my_set):
-   print(index, element)
+# Since set is unordered, generating index doesn't make sense
 ```
 
 ### slice / sub-set
@@ -678,6 +691,13 @@ my_set.discard((3, 4))
 # Remove element but THROW error if element doesn't exist
 my_set.remove((7, "ab8", 9))
 
+# Remove ALL the elements
+my_set.clear()
+```
+
+### clear
+
+```python
 # Remove ALL the elements
 my_set.clear()
 ```
@@ -856,6 +876,13 @@ value = my_dict.pop("key")
 # Removes the key-value pair element and returns the value if key exists or else returns default value (which can be set to None or any other value)
 value = my_dict.pop("key", "default_value")
 
+# Removes all key-value pair elements
+my_dict.clear()
+```
+
+### clear
+
+```python
 # Removes all key-value pair elements
 my_dict.clear()
 ```
@@ -1069,6 +1096,155 @@ new_list = sorted(my_list, key=lambda entry: entry[1].string, reverse=True)
 
 new_dict = dict(new_list)
 # new_dict = {1: python, 3: def, 4: abc, 2: }
+```
+
+# Stack
+
+- No built in data structure in python
+- Using list as stack is efficient as add and remove are from the same end (right end of list)
+
+### initialization
+
+```python
+
+# Delcare
+stack = []
+
+# Declare and Initialize
+stack = [1, 2, 3]
+```
+
+### iterate
+
+```python
+stack = ["item1", "item2", "item3"]
+
+# Vanilla Loop and Pop
+while stack:
+    item = stack.pop()
+    print(item)
+
+# Iterate over the stack from top to bottom (right end to left end of list)
+for item in reversed(stack):
+    print(item)
+```
+
+### size
+
+```python
+size = len(stack)
+```
+
+### add
+
+```python
+# Push (Insert at the right end of the list)
+stack.append("apple")
+```
+
+### remove
+
+```python
+# Pop (Remove and return from the right end of the list)
+element = stack.pop()
+```
+
+### clear
+
+```python
+# Remove ALL element from stack
+stack.clear()
+```
+
+### contains
+
+```python
+flag = "d" in stack  # False
+flag = "d" not in stack  # True
+```
+
+### peek
+
+```python
+stack = ["element1", "element2", "element3"]
+
+# See the top item of stack (right end item of list) without removal
+top_item = stack[-1] if stack else None # "element3"
+```
+
+# Queue
+
+- Use deque as queue in python due to its efficient implementation
+- Using list as queue is INefficient as add and remove are from the DIFFERENT end. (removing from start involves shifting all the elements hence O(n))
+
+### initialization
+
+```python
+from collections import deque
+
+# Declare
+queue = deque()
+
+# Declare and Initialize
+queue = deque([1, 2, 3])
+```
+
+### iterate
+
+```python
+# Vanilla Loop and Pop
+while queue:
+    item = queue.popleft()
+    print(item)
+
+# Iterate like a list from left (queue exit) to right (queue entry)
+for item in queue:
+    print(item)
+```
+
+### size
+
+```python
+size = len(queue)
+```
+
+### add
+
+```python
+# Add to queue entry (list right end)
+queue.append("item")
+```
+
+### remove
+
+```python
+# Remove from queue exit (list left end)
+item = queue.popleft()
+```
+
+### clear
+
+```python
+# Remove ALL elements from deque (queue)
+queue.clear()
+```
+
+### contains
+
+```python
+flag = "d" in queue  # False
+flag = "d" not in queue  # True
+```
+
+### peek
+
+```python
+from collections import deque
+
+queue = deque([1, 2, 3])
+
+# See the item at queue exit (left end item of list) without removal
+exit_item = queue[0] if queue else None # 1
 ```
 
 # Conversions

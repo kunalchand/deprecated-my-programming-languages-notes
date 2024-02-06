@@ -33,6 +33,7 @@
 - .format in print()
 - OOP local variable & constructor initialize
 - | operator in python
+- Counter() dict + sort coutner dict
 
 # Vid-Reference
 
@@ -907,6 +908,9 @@ pair_flag = ("key1", "value1") in my_dict.items()  # O(n)
 my_dict = {"key1": "value1", "key2": "value2"}
 
 # Returns the value if key exists or else returns None
+value = my_dict["key"]
+
+# Returns the value if key exists or else returns None
 value = my_dict.get("key")
 
 # Returns the value if key exists or else returns default value (which can be set to None or any other value)
@@ -1246,6 +1250,10 @@ queue = deque([1, 2, 3])
 # See the item at queue exit (left end item of list) without removal
 exit_item = queue[0] if queue else None # 1
 ```
+
+# Deque
+
+### initialisation
 
 # Conversions
 

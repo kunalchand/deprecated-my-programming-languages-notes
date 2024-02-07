@@ -34,6 +34,8 @@
 - OOP local variable & constructor initialize
 - | operator in python
 - Counter() dict + sort coutner dict
+- **lt** vs **eq** and similar stuff
+- checkout Test_114.py (function unpacking stuff and sending function as parameter)
 
 # Vid-Reference
 
@@ -128,6 +130,10 @@ for index in range(0, len(my_list), 1): # 0 to len(my_list)-1
 
 # Using for-each loop
 for element in my_list:
+   print(element)
+
+# Using for-each loop (reversed order)
+for element in reversed(my_list):
    print(element)
 
 # Using enumerate
@@ -382,6 +388,10 @@ for index in range(0, len(my_tuple), 1):  # 0 to len(my_tuple)-1
 
 # Using for-each loop
 for element in my_tuple:
+   print(element)
+
+# Using for-each loop (reversed order)
+for element in reversed(my_tuple):
    print(element)
 
 # Using enumerate
@@ -1180,6 +1190,7 @@ top_item = stack[-1] if stack else None # "element3"
 
 - Use deque as queue in python due to its efficient implementation
 - Using list as queue is INefficient as add and remove are from the DIFFERENT end. (removing from start involves shifting all the elements hence O(n))
+- exit <= [queue] <= entry
 
 ### initialization
 
@@ -1196,6 +1207,8 @@ queue = deque([1, 2, 3])
 ### iterate
 
 ```python
+# exit <= [queue] <= entry
+
 # Vanilla Loop and Pop
 while queue:
     item = queue.popleft()
@@ -1215,6 +1228,8 @@ size = len(queue)
 ### add
 
 ```python
+# exit <= [queue] <= entry
+
 # Add to queue entry (list right end)
 queue.append("item")
 ```
@@ -1222,6 +1237,8 @@ queue.append("item")
 ### remove
 
 ```python
+# exit <= [queue] <= entry
+
 # Remove from queue exit (list left end)
 item = queue.popleft()
 ```
@@ -1243,6 +1260,8 @@ flag = "d" not in queue  # True
 ### peek
 
 ```python
+# exit <= [queue] <= entry
+
 from collections import deque
 
 queue = deque([1, 2, 3])
@@ -1253,7 +1272,158 @@ exit_item = queue[0] if queue else None # 1
 
 # Deque
 
-### initialisation
+- exit <= [deque] <= entry
+
+### initialization
+
+```python
+from collections import deque
+
+# Declare
+dq = deque()
+dq = deque(maxlen=2)
+
+# Declare and Initialize
+dq = deque([1, 2, 3])
+dq = deque([1, 2, 3], maxlen=2)
+
+dq = deque("abc")
+dq = deque("abc", maxlen=2)
+```
+
+### iterate
+
+```python
+# exit <= [deque] <= entry
+
+from collections import deque
+
+dq = deque([1, 2, 3, 4, 5])
+
+# Vanilla Loop and Pop from left (deque exit) to right (deque entry)
+while dq:
+    item = dq.popleft()
+    print(item)
+
+# Vanilla Loop and Pop from right (deque entry) to left (deque exit)
+while dq:
+    item = dq.pop()
+    print(item)
+
+# Iterate like a list from left (deque exit) to right (deque entry)
+for item in dq:
+    print(item)
+
+# Iterate like a list from right (deque entry) to left (deque exit)
+for item in reversed(dq):
+    print(item)
+```
+
+### size
+
+```python
+size = len(dq)
+```
+
+### add
+
+```python
+# exit <= [deque] <= entry
+
+from collections import deque
+
+dq = deque([1, 2, 3, 4, 5])
+
+# Add element in the exit (left)
+dq.appendleft(0)
+
+# Add element in the entry (right)
+dq.append(6)
+```
+
+### remove
+
+```python
+# exit <= [deque] <= entry
+
+from collections import deque
+
+dq = deque([1, 2, 3, 4, 5])
+
+# Remove element from the exit (left)
+dq.popleft()
+
+# Remove element from the entry (right)
+dq.pop()
+```
+
+### clear
+
+```python
+# Remove ALL elements from deque
+dq.clear()
+```
+
+### contains
+
+```python
+flag = "element" in dq  # False
+flag = "element" not in dq  # True
+```
+
+### peek
+
+```python
+# exit <= [deque] <= entry
+
+from collections import deque
+
+dq = deque([1, 2, 3, 4, 5])
+
+# See the item at deque exit (left end item) without removal
+exit_item = dq[0] if dq else None # 1
+
+# See the item at deque entry (right end item) without removal
+entry_item = dq[-1] if dq else None # 5
+```
+
+### deque as stack
+
+```python
+# exit <= [deque] <= entry
+
+from collections import deque
+
+stack = deque([1, 2, 3, 4, 5])
+
+# Add at top (entry / right end)
+stack.append(6)
+
+# Peek the top (entry / right end) without removal
+element = stack[-1]
+
+# Remove the top (entry / right end)
+stack.pop()
+```
+
+### deque as queue
+
+```python
+# exit <= [deque] <= entry
+
+from collections import deque
+
+queue = deque([1, 2, 3, 4, 5])
+
+# Add at (entry / right end)
+queue.append(6)
+
+# Peek the (exit / left end) without removal
+element = queue[0]
+
+# Remove the (exit / left end)
+queue.popleft()
+```
 
 # Conversions
 

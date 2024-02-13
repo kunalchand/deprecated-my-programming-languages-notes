@@ -2,7 +2,6 @@
 
 # To-Do
 
-- Write Data Structures similar to Java
 - Iterate a string
 - Pack & Unpack (\* & **) = jovian function(**test[input]) dictionary
 - return type in a function? (LeetCode 34)
@@ -36,6 +35,9 @@
 - Counter() dict + sort coutner dict
 - **lt** vs **eq** and similar stuff
 - checkout Test_114.py (function unpacking stuff and sending function as parameter)
+- nonlocal in python
+- Extend in list, tuple, dict, set
+- class for all data structure
 
 # Vid-Reference
 
@@ -1425,6 +1427,136 @@ element = queue[0]
 queue.popleft()
 ```
 
+# Priority Queue (Heap)
+
+- In Python, only min heap can be applied on list
+- Using heapq module, elements in list can be rearranged to simulate heap
+
+### Min-Heap
+
+```python
+import heapq
+
+# Declare
+min_heap = []
+
+# Declare and Initialize
+min_heap = [5, 4, 3, 2, 1]
+heapq.heapify(min_heap)
+```
+
+### Max-Heap
+
+- NOT possible to create max-heap by default in python
+- Append "-" to elements when adding and removing from min-heap to simulate max heap
+
+### Max + Min Heap (Class)
+
+```python
+import heapq
+
+
+class MaxHeapClass:
+    def __init__(self, v1, v2):
+        self.v1 = v1
+        self.v2 = v2
+
+    def __lt__(self, other):  # Used by heapq module to compare class elements
+        return self.v2 > other.v2
+
+    def __repr__(self):  # Backup if __str__ is not defined
+        return "({}, {})".format(self.v1, self.v2)
+
+
+class MinHeapClass:
+    def __init__(self, v1, v2):
+        self.v1 = v1
+        self.v2 = v2
+
+    def __lt__(self, other):  # Used by heapq module to compare class elements
+        return self.v2 < other.v2
+
+    def __repr__(self):  # Backup if __str__ is not defined
+        return "({}, {})".format(self.v1, self.v2)
+
+
+max_heap = []
+min_heap = []
+
+heapq.heappush(max_heap, MaxHeapClass(5, 6))
+heapq.heappush(max_heap, MaxHeapClass(7, 8))
+
+heapq.heappush(min_heap, MinHeapClass(1, 2))
+heapq.heappush(min_heap, MinHeapClass(3, 4))
+
+print(max_heap)  # [(7, 8), (5, 6)]
+print(min_heap)  # [(1, 2), (3, 4)]
+```
+
+### iterate
+
+```python
+import heapq
+
+min_heap = ["item3", "item1", "item2"]
+heapq.heapify(min_heap)
+
+# Vanilla (consumes min_heap)
+while min_heap:
+    print(heapq.heappop(min_heap))
+```
+
+### size
+
+```python
+size = len(min_heap)
+```
+
+### add
+
+```python
+min_heap = []
+
+import heapq
+
+heapq.heappush(min_heap, "item")
+```
+
+### remove
+
+```python
+min_heap = ["item1", "item2", "item3"]
+
+import heapq
+
+# Pops and returns the top element in heap (left end item of list). Raises IndexError if heap is empty.
+item = heapq.heappop(min_heap) # "item1"
+```
+
+### clear
+
+```python
+# Clear the list
+min_heap.clear()
+```
+
+### contains
+
+```python
+# Contains in list
+flag = "element" in min_heap  # False
+flag = "element" not in min_heap  # True
+```
+
+### peek
+
+```python
+min_heap = ["item1", "item2", "item3"]
+
+# See the top item of heap (left end item of list) without removal. Raises IndexError if heap is empty.
+item = min_heap[0] # "item1"
+```
+
 # Conversions
 
 ### 1. String & List
@@ -1478,28 +1610,33 @@ new_list = list({"var1", 2, "var 3"})
 
 # MyClass
 
-### init, repr, str, eq, hash
+### init, repr, str, lt, eq, hash
 
 - Defining **repr** is much safer that definding **str**
 - **str** may or may not be directly called. But **repr** is either directly called or gets called when **str** is not present
+- **lt** represents "less than" compraison, which is used by heapq module to compare custom classes
+- **eq** represents "equal" compraison, which is used for equating custom classes
 
 ```python
 class MyClass:
-   def __init__(self):
-       self.v1 = None
-       self.v2 = None
+    def __init__(self):
+        self.v1 = None
+        self.v2 = None
 
-   def __repr__(self): # Backup if __str__ is not defined
-       return "({}, {})".format(self.v1, self.v2)
+    def __repr__(self):  # Backup if __str__ is not defined
+        return "({}, {})".format(self.v1, self.v2)
 
-   def __str__(self):
-       self.__repr__()
+    def __str__(self):
+        self.__repr__()
 
-   def __eq__(self, other):
-       return self.v1 == other.v1 and self.v2 == other.v2
+    def __lt__(self, other):  # Used by heapq module to compare class elements
+        return self.v2 > other.v2
 
-   def __hash__(self):
-       return hash((self.v1, self.v2))
+    def __eq__(self, other):
+        return self.v1 == other.v1 and self.v2 == other.v2
+
+    def __hash__(self):
+        return hash((self.v1, self.v2))
 ```
 
 # Python Syntax

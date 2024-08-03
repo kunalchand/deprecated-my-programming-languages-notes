@@ -34,7 +34,7 @@
 - | operator in python
 - Counter() dict + sort coutner dict
 - **lt** vs **eq** and similar stuff
-- checkout Test_114.py (function unpacking stuff and sending function as parameter)
+- checkout Test_114.py (function unpacking stuff and sending function as parameter) (Shrishti's OA Q2)
 - nonlocal in python
 - Extend in list, tuple, dict, set
 - class for all data structure

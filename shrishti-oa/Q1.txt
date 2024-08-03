@@ -1,0 +1,44 @@
+Write query that will return sales details of all customers and products. The query should return all customers, even customers without invoices and also all products, even those products that were not sold. Print "N/A" for a null customer or product name, and 0 for a null quantity.
+
+For each row return customer name, product name, and the quantity of the product sold. Order the result ascending by customer id, product id and invoice item id.
+
+Schema:
+
+Table: customer
+column name | column type | key / NULL
+id | int | PK
+customer_name | varchar(255) | 
+city_id  | int | FK
+customer_address | varchar(255) | 
+contact_person | varchar(255) | N
+email | varchar(128) |
+phone | varchar(128) | 
+
+Table: product
+column name | column type | key / NULL
+id | int | PK
+sku | varchar(32) | 
+product_name | varchar(32) | 
+product_name | varchar(128) | 
+product_description | text | 
+current_price | decimal(8,2) | 
+quantity_in_stock | int
+
+Table: invoice
+column name | column type | key / NULL
+id | int | PK
+invoice_number | varchar(255) | 
+customer_id | int | FK
+user_account_id | int | 
+total_price | decimal(8,2) | 
+time_issued | varchar(255) | N
+time_due | varchar(255) | N
+
+Table: invoice_item
+column name | column type | key / NULL
+id | int | PK
+invoice_id | int | FK
+product_id | int | FK
+quantity | decimal(8,2) | 
+price | decimal(8,2) | 
+line_total_price | decimal(8,2) | 

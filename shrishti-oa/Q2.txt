@@ -1,0 +1,14 @@
+Implement a function called compose that takes an arbitrary number of functions as its arguments. it should return a new function that represents the composition of functionsList[1], functionsList[2], functionsList[3], ..., functionsList[n] such that the arguments given to the function returned by compose are passed to functionsList[1], the output obtained is passed to functionsList[2], and so on. Finally, the output of the last function should be returned.
+
+Note: The function compose should return a function. Only the first function of the list functionsList[1] can have a variable number of arguments. Then each function requires one argument which is the return value of the previous function.
+
+
+‘The functions used are -
+
+* add(*args)-> takes a variable number of arguments and returns the sum of the arguments.
+* square(a)-> takes a number as an argument and returns the square of a .
+* splitter(a)> takes a number as an argument, divides the number by 2, and returns a list of length 2: [floor of division, value - floor of division]. 
+* my_max(a) > takes a number or list of numbers as an argument and returns the maximum value.
+'* my_min(a)-> takes a number or list of numbers as an argument and return the minimum value,
+
+

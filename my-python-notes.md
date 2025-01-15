@@ -38,6 +38,75 @@
 - nonlocal in python
 - Extend in list, tuple, dict, set
 - class for all data structure
+- clear() in all data structure
+- ord() python
+- dataclass in python
+- index() find() count() in python
+- Optional & method reference in java
+- heapify and heappushpop in python
+- sorting order of lisi elements in heap
+- =+ is extend() (maxHeap = maxHeap + storeHeap) vs (maxHeap += storeHeap)
+- increment i and j in the samee for range loop in ```python
+- git rebase master procedure and concept
+- multiple arguments, if not speciffy the first one. in python methods
+- bisect in python
+- isnumeric() in python (string chatacter checks)
+- floor() and ceil() in python
+- / vs // division in python
+- maxheap in python using -
+- heap in python for [a,b] or (a,b) shortcut (Alternative to class)
+- nested for loop in one line 
+```python
+def topKFrequent(self, nums, k):
+    bucket = [[] for _ in range(len(nums) + 1)]
+    Count = Counter(nums).items()  
+    for num, freq in Count: bucket[freq].append(num) 
+    flat_list = [item for sublist in bucket for item in sublist]
+    return flat_list[::-1][:k]
+```
+- string traverse iterate and enumerate
+- python myclass init arguments
+```python
+ def __int__(self, start, end):
+ def __int__(self):
+```
+- ord() and char() and bin()
+```
+deal with ascii values, characters and binary values
+```
+- bool() method to check if element is empty
+- Python's undefined behavior when modifying a set (or any mutable collection) while iterating
+```
+https://www.phind.com/search?cache=zk740a7nvpxl88c2274qzhj7
+```
+- from math import floor() ceil() in python
+- any keyword in python
+```
+if any():
+```
+- SortedSet in Python 
+- itertools.combinations() module in Python
+- def fun(x) -> List[Union[int, str]] VS def fun(x) -> Tuple[int, str]
+```
+tuples can be typed with multiple types directly, like Tuple[int, str]. However, Python's type hinting system does not support specifying multiple types in this way for a list. So you need to use Union to specify multiple possible types.
+```
+- Combinations and sorted(zip())
+```
+https://www.youtube.com/watch?v=cqC7kiLG0Dc&t=845s
+```
+- itertools - pairwise, combination, permutation
+- extend/merge set
+```
+Set1 = Set1 | Set2
+Set1 |= Set2
+Set1.update(Set2)
+Set1 = Set1.union(Set2)
+
+Clarify the existing union definition in Notes
+```
+- dict.setdefault(key, value/newclassobject/list/set/map/int)
+- @lru_cache or @cache for automatic memo dp
+
 
 # Vid-Reference
 

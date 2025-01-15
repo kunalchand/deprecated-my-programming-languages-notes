@@ -45,8 +45,11 @@
 - Optional & method reference in java
 - heapify and heappushpop in python
 - sorting order of lisi elements in heap
-- =+ is extend() (maxHeap = maxHeap + storeHeap) vs (maxHeap += storeHeap)
-- increment i and j in the samee for range loop in ```python
+- =+ is extend() 
+```
+(maxHeap = maxHeap + storeHeap) vs (maxHeap += storeHeap)
+```
+- increment i and j in the samee for range loop in python
 - git rebase master procedure and concept
 - multiple arguments, if not speciffy the first one. in python methods
 - bisect in python
@@ -54,7 +57,10 @@
 - floor() and ceil() in python
 - / vs // division in python
 - maxheap in python using -
-- heap in python for [a,b] or (a,b) shortcut (Alternative to class)
+- heap in python for [a,b] or (a,b) shortcut 
+```
+(Alternative to class)
+```
 - nested for loop in one line 
 ```python
 def topKFrequent(self, nums, k):

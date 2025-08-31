@@ -1,5 +1,13 @@
-# My Programming Languages Notes
+# Deprecated Repository
 
-### ☕ [My Java Notes](https://github.com/kunalchand/my-programming-languages-notes/blob/master/my-java-notes.md)
+**This repository is deprecated and no longer maintained.**
 
-### 🐍 [My Python Notes](https://github.com/kunalchand/my-programming-languages-notes/blob/master/my-python-notes.md)
+## Reason for Deprecation
+The contents of this repository have been moved to a new repository for better maintenance and updates.
+
+## New Repository
+Please visit [my-resources/programming-languages](https://github.com/kunalchand/my-resources/tree/master/programming-languages) for the latest version.
+
+## Important Notes
+- This repository will remain available for reference, but no further updates will be made.
+- If you have any questions, feel free to reach out to [kchand@buffalo.edu].
